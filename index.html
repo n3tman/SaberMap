@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SaberMap: Top Beat Saber Players</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/flags.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="css/clusterize.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/MarkerCluster.css">
+    <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+<div class="wrapper toggled-left toggled-right">
+    <div class="sidebar -left">
+        <div class="inner">
+            <div class="item -title">
+                <h2 class="title">players</h2>
+            </div>
+            <div class="item -search">
+                <input type="search" id="search" class="form-control" placeholder="Find… (3+ chars)" autofocus>
+                <a href="#" class="btn btn-primary" title="Reset" id="counter">5000</a>
+            </div>
+            <ul class="list-group list" id="players">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar -right">
+        <div class="inner">
+            <div class="item -title">
+                <h2 class="title">filters</h2>
+            </div>
+            <div class="item -updated">
+                <span class="text"><strong>Last Updated</strong>:&nbsp;</span>
+                <span class="date">17 Apr 2019, 23:14 UTC</span>
+            </div>
+            <div id="blocks">
+                <div class="block filters">
+                    <h3>Ranks</h3>
+                    <button type="button" class="btn btn-danger" id="top10">Top 10</button>
+                    <button type="button" class="btn btn-warning" id="top100">Top 100</button>
+                    <button type="button" class="btn btn-success" id="top500">Top 500</button>
+                    <button type="button" class="btn btn-info" id="top1000">Top 1000</button>
+                    <button type="button" class="btn btn-primary" id="top2000">Top 2000</button>
+                    <button type="button" class="btn btn-default map-reset" disabled>Top 5000 (Reset)</button>
+                </div>
+                <div class="block regions">
+                    <h3>Regions</h3>
+                    <button type="button" class="btn btn-primary" id="region-na">North America</button>
+                    <button type="button" class="btn btn-primary" id="region-sa">South America</button>
+                    <button type="button" class="btn btn-primary" id="region-eu">Europe</button>
+                    <button type="button" class="btn btn-primary" id="region-af">Africa</button>
+                    <button type="button" class="btn btn-primary" id="region-as">Asia</button>
+                    <button type="button" class="btn btn-primary" id="region-oc">Oceania</button>
+                    <button type="button" class="btn btn-primary map-reset" disabled>All Regions (Reset)</button>
+                </div>
+                <div class="block info">
+                    <h3>Info</h3>
+                    <p>Data is scraped from <a href="https://scoresaber.com/global" target="_blank">ScoreSaber.com</a> website.</p>
+                    <p>Exact locations within countries are random, taken from <a href="https://www.geonames.org/export/" target="_blank">GeoNames</a> "largest cities" database.</p>
+                    <p>If you have suggestions or want to report bugs, message me on Discord: <strong>n3tman#6295</strong></p>
+                </div>
+            </div>
+            <div class="item -contact">
+                <p>&copy; 2019 <a href="#" title="Show on map" class="link-goto">n3tman</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-wrapper" id="saber-map"></div>
+</div>
+
+
+<script src="js/jquery.js"></script>
+<script src="js/perfect-scrollbar.jquery.js"></script>
+<script src="js/clusterize.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/leaflet-src.js"></script>
+<script src="js/leaflet.markercluster-src.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
