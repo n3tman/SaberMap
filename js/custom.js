@@ -167,7 +167,7 @@ var map = L.map('saber-map', {
         {
             position: [60, -120],
             tooltip: 'Canadian Discord',
-            popup: getPopupMarkup('Canadian Discord', 'Canada', 'TeknozFR <3#6900,<br>Yun0#1355', null, '<a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhARJyoYJ_FcbChiVUTAPPkBlVsENsBF2bs5twkJkrbjbGQ/viewform" target="_blank">Join-Up Form</a>')
+            popup: getPopupMarkup('Canadian Discord', 'Canada', 'Yun0#1355', null, '<a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhARJyoYJ_FcbChiVUTAPPkBlVsENsBF2bs5twkJkrbjbGQ/viewform" target="_blank">Join-Up Form</a>')
         },
         {
             position: [56.4, -3.2],
