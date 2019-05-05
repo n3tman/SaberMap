@@ -172,7 +172,7 @@ var map = L.map('saber-map', {
         {
             position: [56.4, -3.2],
             tooltip: 'UK Discord',
-            popup: getPopupMarkup('UK Discord', 'United Kingdom, Ireland', 'Yoshi#0655')
+            popup: getPopupMarkup('UK Discord', 'United Kingdom, Ireland', 'Rocker#1234')
         },
         {
             position: [-23.5, 134.6],
