@@ -353,6 +353,11 @@ function matchRegion (row, region) {
     return countries[row.properties.country.toUpperCase()].continent === region;
 }
 
+// Match new players
+function matchNewPlayers (row) {
+    return row.properties.new;
+}
+
 // Filter map by rank
 function filterMap (cluster, clusterCopy, callback, term) {
     for (var country in cluster) {
@@ -617,6 +622,12 @@ $(document).ready(function () {
         disableBtn($(this));
         filterMap(clusterArray, clusterArrayCopy, matchRegion, 'OC');
         filterList(rowsArray, $counter, matchRegion, 'OC');
+    });
+
+    $('#new-players').click(function () {
+        disableBtn($(this));
+        filterMap(clusterArray, clusterArrayCopy, matchNewPlayers);
+        filterList(rowsArray, $counter, matchNewPlayers);
     });
 
     // ---------------
