@@ -698,6 +698,7 @@ $(document).ready(function () {
                         url = feature.properties.url,
                         avatar = feature.properties.avatar,
                         id = feature.id,
+                        newPlayer = feature.properties.new,
                         labelColor = getColor(id),
                         tooltipContent, popupContent;
 
@@ -738,7 +739,8 @@ $(document).ready(function () {
                     rowsArray.push({
                         name: name,
                         properties: {
-                            country: country
+                            country: country,
+                            new: newPlayer
                         },
                         id: id,
                         active: true,
