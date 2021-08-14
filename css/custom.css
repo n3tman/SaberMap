@@ -349,6 +349,10 @@ fieldset[disabled] .btn {
     margin: 10px;
 }
 
+.-player .leaflet-popup-content {
+    min-height: 170px;
+}
+
 .popup-info,
 .popup-photo {
     display: table-cell;

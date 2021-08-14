@@ -10,14 +10,14 @@ var map = L.map('saber-map', {
         center: [36, -36],
         zoom: 3,
         minZoom: 3,
-        maxZoom: 6,
+        maxZoom: 8,
         maxBounds: [[-57, -200], [80, 200]],
         zoomControl: false,
         wheelPxPerZoomLevel: 120,
         maxBoundsViscosity: 1
     }),
 
-    helperCoords = map.options.center,
+    // helperCoords = map.options.center,
     clusterArray = {},
     clusterArrayCopy = {},
 
@@ -27,6 +27,10 @@ var map = L.map('saber-map', {
     countries = {},
 
     countryUrl = 'https://scoresaber.com/global?country=',
+    altCountry = 'https://ssr.motzel.dev/ranking/',
+    saberProfile = 'https://scoresaber.com/u/',
+    altProfile = 'https://ssr.motzel.dev/u/',
+    newApi = 'https://new.scoresaber.com',
 
     // ------------------
     //   Color Markers
@@ -104,7 +108,7 @@ var map = L.map('saber-map', {
         shadowSize: [41, 41]
     }),
 
-    helperIcon = L.icon({
+    /* helperIcon = L.icon({
         iconUrl: 'images/marker-icon-black.png',
         iconRetinaUrl: 'images/marker-icon-2x-black.png',
         shadowUrl: 'images/marker-shadow.png',
@@ -114,7 +118,7 @@ var map = L.map('saber-map', {
         tooltipAnchor: [16, -28],
         shadowSize: [41, 41],
         className: 'helper-marker'
-    }),
+    }), */
 
     discordIcon = L.icon({
         iconUrl: 'images/discord-icon.png',
@@ -128,7 +132,7 @@ var map = L.map('saber-map', {
     }),
 
     // Create a helper marker
-    helperMarker = L.marker(helperCoords, {
+    /* helperMarker = L.marker(helperCoords, {
         icon: helperIcon,
         draggable: true
     }),
@@ -139,7 +143,7 @@ var map = L.map('saber-map', {
         closeOnClick: false,
         className: 'helper-popup'
     }).setLatLng(helperCoords)
-        .setContent('[' + helperCoords[0] + ', ' + helperCoords[1] + ']'),
+        .setContent('[' + helperCoords[0] + ', ' + helperCoords[1] + ']'), */
 
     discordLayer = L.layerGroup(),
 
@@ -271,7 +275,7 @@ function goToMarker (country, id, name) {
 
     clusterArray[country].eachLayer(function (layer) {
         if ((!_.isNil(id) && layer.feature.id === id) ||
-            (!_.isNil(name) && layer.feature.properties.name === name)) {
+            (!_.isNil(name) && layer.feature.properties.n === name)) {
             clusterArray[country].zoomToShowLayer(layer, function () {
                 layer.openPopup();
             });
@@ -305,7 +309,7 @@ function filterRows (rows) {
         }
     }
     return results;
-};
+}
 
 // Reset list
 function resetList (rows, $counter) {
@@ -340,7 +344,7 @@ function filterList (rows, $counter, callback, term) {
 
 // Match name condition
 function matchName (row, term) {
-    return row.name.toLowerCase().indexOf(term.toLowerCase()) + 1;
+    return row.n.toLowerCase().indexOf(term.toLowerCase()) + 1;
 }
 
 // Match rank condition
@@ -350,13 +354,16 @@ function matchRank (row, rank) {
 
 // Match region condition
 function matchRegion (row, region) {
-    return countries[row.properties.country.toUpperCase()].continent === region;
+    if (!(row.properties.c)) {
+        console.log(row);
+    }
+    return countries[row.properties.c.toUpperCase()].continent === region;
 }
 
 // Match new players
-function matchNewPlayers (row) {
+/* function matchNewPlayers (row) {
     return row.properties.new;
-}
+} */
 
 // Filter map by rank
 function filterMap (cluster, clusterCopy, callback, term) {
@@ -531,7 +538,7 @@ $(document).ready(function () {
         resetList(rowsArray, $counter);
     });
 
-    // Go to marker after clicking on employee name
+    // Go to marker after clicking on player name
     // + highlight the list item
     $players.on('click', '.list-group-item', function () {
         var $this = $(this),
@@ -545,10 +552,10 @@ $(document).ready(function () {
     });
 
     // Scroll to contact
-    $('.link-goto').click(function (e) {
+    /* $('.link-goto').click(function (e) {
         e.preventDefault();
         goToMarker('by', null, 'n3tman');
-    });
+    }); */
 
     // Reset clusters on the map
     $('.map-reset').click(function () {
@@ -624,11 +631,11 @@ $(document).ready(function () {
         filterList(rowsArray, $counter, matchRegion, 'OC');
     });
 
-    $('#new-players').click(function () {
+    /* $('#new-players').click(function () {
         disableBtn($(this));
         filterMap(clusterArray, clusterArrayCopy, matchNewPlayers);
         filterList(rowsArray, $counter, matchNewPlayers);
-    });
+    }); */
 
     // ---------------
     //   Main Action
@@ -646,7 +653,7 @@ $(document).ready(function () {
     }).addTo(map);
 
     // Add a helper marker to help get coordinates
-    helperMarker.addTo(map)
+    /* helperMarker.addTo(map)
         .bindPopup(helperPopup).openPopup()
         // recalculate marker position on drag
         // + don't close it while dragging
@@ -654,7 +661,7 @@ $(document).ready(function () {
             var latlng = this.getLatLng();
             helperPopup.setContent('[' + _.round(latlng.lat, 5) + ', ' + _.round(latlng.lng, 5) + ']');
             this.openPopup();
-        });
+        }); */
 
     discordMarkers.forEach(function (marker) {
         var layer = L.marker(marker.position, {icon: discordIcon});
@@ -691,14 +698,15 @@ $(document).ready(function () {
                 // Iterate over players
                 onEachFeature: function (feature, layer) {
                     // Construct the contents of the player tooltip and popup
-                    var country = feature.properties.country,
-                        name = feature.properties.name,
-                        rank = feature.properties.rank,
-                        points = feature.properties.points,
-                        url = feature.properties.url,
-                        avatar = feature.properties.avatar,
+                    var country = feature.properties.c,
+                        name = feature.properties.n,
+                        rank = feature.properties.r,
+                        points = feature.properties.p,
+                        url = saberProfile + feature.properties.i,
+                        alt = altProfile + feature.properties.i,
+                        avatar = newApi + feature.properties.a,
                         id = feature.id,
-                        newPlayer = feature.properties.new,
+                        // newPlayer = feature.properties.new,
                         labelColor = getColor(id),
                         tooltipContent, popupContent;
 
@@ -721,7 +729,8 @@ $(document).ready(function () {
                     }).bindPopup(popupContent, {
                         closeButton: false,
                         minWidth: 450,
-                        maxWidth: 450
+                        maxWidth: 450,
+                        className: '-player'
                     }).on('popupopen', function () {
                         this.closeTooltip();
                     });
@@ -737,10 +746,10 @@ $(document).ready(function () {
                     clusterArray[country].addLayer(layer);
 
                     rowsArray.push({
-                        name: name,
+                        n: name,
                         properties: {
-                            country: country,
-                            new: newPlayer
+                            c: country
+                            // new: newPlayer
                         },
                         id: id,
                         active: true,

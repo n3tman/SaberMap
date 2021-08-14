@@ -7,15 +7,15 @@
 
     <title>SaberMap: Top Beat Saber Players</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/flags.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/perfect-scrollbar.css">
@@ -50,7 +50,7 @@
             </div>
             <div class="item -updated">
                 <span class="text"><strong>Last Updated</strong>:&nbsp;</span>
-                <span class="date">14 May 2019, 22:25 UTC</span>
+                <span class="date">14 Aug 2021, 15:29 UTC</span>
             </div>
             <div id="blocks">
                 <div class="block filters">
@@ -72,20 +72,20 @@
                     <button type="button" class="btn btn-primary" id="region-oc">Oceania</button>
                     <button type="button" class="btn btn-default map-reset" disabled>All Regions (Reset)</button>
                 </div>
-                <div class="block other">
+                <!--<div class="block other">
                     <h3>Other</h3>
                     <button type="button" class="btn btn-success" title="Since Last Update: 17 Apr 2019" id="new-players">New Players</button>
                     <button type="button" class="btn btn-default map-reset" disabled>All Players (Reset)</button>
-                </div>
+                </div>-->
                 <div class="block info">
                     <h3>Info</h3>
-                    <p>Data is scraped from <a href="https://scoresaber.com/global" target="_blank">ScoreSaber.com</a> website.</p>
+                    <p>Data is taken from <a href="https://scoresaber.com/global" target="_blank">ScoreSaber.com</a> API.</p>
+                    <p>Updated manually (page is statically generated).</p>
                     <p>Exact locations within countries are random, taken from <a href="https://www.geonames.org/export/" target="_blank">GeoNames</a> "largest cities" database.</p>
-                    <p>If you have suggestions or want to report bugs, message me on Discord: <strong>n3tman#6295</strong></p>
                 </div>
             </div>
             <div class="item -contact">
-                <p>&copy; 2019 <a href="#" title="Show on map" class="link-goto">n3tman</a></p>
+                <p>&copy; 2021 <a href="#" title="Nik#1471" class="link-goto">n3tman</a></p>
             </div>
         </div>
     </div>
@@ -94,12 +94,12 @@
 </div>
 
 
-<script src="js/jquery.js"></script>
-<script src="js/perfect-scrollbar.jquery.js"></script>
-<script src="js/clusterize.js"></script>
-<script src="js/lodash.js"></script>
-<script src="js/leaflet-src.js"></script>
-<script src="js/leaflet.markercluster-src.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/clusterize.min.js"></script>
+<script src="js/lodash.min.js"></script>
+<script src="js/leaflet.js"></script>
+<script src="js/leaflet.markercluster.js"></script>
 <script src="js/custom.js"></script>
 
 </body>
