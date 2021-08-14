@@ -1,4 +1,4 @@
 # SaberMap
-Top Beat Saber Players: https://sabermap.nikis.me
+Top Beat Saber Players: https://n3tman.github.io/SaberMap/
 
 Bonus: Discord servers

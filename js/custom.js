@@ -688,7 +688,7 @@ $(document).ready(function () {
         attribution: 'Countries &copy; <a href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Natural Earth</a> | Tiles by <a href="http://ilya.zverev.info/">Zverik</a>'
     }).addTo(map);
 
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
         attribution: 'Labels by <a href="https://carto.com/location-data-services/basemaps/">Carto</a>'
     }).addTo(map);
 
