@@ -17,7 +17,7 @@ var map = L.map('saber-map', {
         maxBoundsViscosity: 1
     }),
 
-    // helperCoords = map.options.center,
+    helperCoords = map.options.center,
     clusterArray = {},
     clusterArrayCopy = {},
 
@@ -108,7 +108,7 @@ var map = L.map('saber-map', {
         shadowSize: [41, 41]
     }),
 
-    /* helperIcon = L.icon({
+    helperIcon = L.icon({
         iconUrl: 'images/marker-icon-black.png',
         iconRetinaUrl: 'images/marker-icon-2x-black.png',
         shadowUrl: 'images/marker-shadow.png',
@@ -118,7 +118,7 @@ var map = L.map('saber-map', {
         tooltipAnchor: [16, -28],
         shadowSize: [41, 41],
         className: 'helper-marker'
-    }), */
+    }),
 
     discordIcon = L.icon({
         iconUrl: 'images/discord-icon.png',
@@ -132,7 +132,7 @@ var map = L.map('saber-map', {
     }),
 
     // Create a helper marker
-    /* helperMarker = L.marker(helperCoords, {
+    helperMarker = L.marker(helperCoords, {
         icon: helperIcon,
         draggable: true
     }),
@@ -143,40 +143,50 @@ var map = L.map('saber-map', {
         closeOnClick: false,
         className: 'helper-popup'
     }).setLatLng(helperCoords)
-        .setContent('[' + helperCoords[0] + ', ' + helperCoords[1] + ']'), */
+        .setContent('[' + helperCoords[0] + ', ' + helperCoords[1] + ']'),
 
     discordLayer = L.layerGroup(),
 
     discordMarkers = [
         {
-            position: [31, -57],
-            tooltip: 'Beat Saber Modding Group',
-            popup: getPopupMarkup('Beat Saber Modding Group', null, null, 'https://discord.gg/beatsabermods', 'The largest Beat Saber Discord server')
+            position: [55.5, -108],
+            tooltip: 'Beat Saber Canadian Discord 🍁',
+            popup: getPopupMarkup('Beat Saber Canadian Discord 🍁', null, null, 'https://discord.gg/vvq7wX3')
         },
         {
-            position: [31, -45],
-            tooltip: 'ScoreSaber',
-            popup: getPopupMarkup('ScoreSaber Discord', null, null, 'https://discord.gg/WpuDMwU', 'Dedicated to unofficial player ranking')
+            position: [52.39, -0.24],
+            tooltip: 'British Beat Saber Discord',
+            popup: getPopupMarkup('British Beat Saber Discord', null, null, 'https://discord.gg/FC2pzeN')
         },
         {
-            position: [31, -33],
-            tooltip: 'Reddit Community',
-            popup: getPopupMarkup('Reddit Community', null, null, 'https://discord.gg/PNyawF6', '/r/beatsaber community')
+            position: [53.37, -7.9],
+            tooltip: 'Beat Saber na hÉireann',
+            popup: getPopupMarkup('Beat Saber na hÉireann', null, null, 'https://discord.gg/uKQzjRQ')
         },
         {
-            position: [31, -21],
-            tooltip: 'BeastSaber',
-            popup: getPopupMarkup('BeastSaber', null, null, 'https://discord.gg/GdRbkye', 'BSaber.com server')
+            position: [49.31, 14.36],
+            tooltip: 'CzechSaber Community',
+            popup: getPopupMarkup('CzechSaber', null, null, 'https://discord.gg/r42NEPt3w5')
         },
         {
-            position: [60, -120],
-            tooltip: 'Canadian Discord',
-            popup: getPopupMarkup('Canadian Discord', 'Canada', 'Yun0#1355', null, '<a href="https://docs.google.com/forms/d/e/1FAIpQLSfWhARJyoYJ_FcbChiVUTAPPkBlVsENsBF2bs5twkJkrbjbGQ/viewform" target="_blank">Join-Up Form</a>')
+            position: [54.07, 35.29],
+            tooltip: 'Beato Saba',
+            popup: getPopupMarkup('Beato Saba', 'RU, UA, BY, KZ, etc.', null, 'https://discord.gg/5JXRY8z')
         },
         {
-            position: [56.4, -3.2],
-            tooltip: 'UK Discord',
-            popup: getPopupMarkup('UK Discord', 'United Kingdom, Ireland', 'Rocker#1234')
+            position: [52.6, 26.19],
+            tooltip: 'Beato Saba',
+            popup: getPopupMarkup('Beato Saba', 'RU, UA, BY, KZ, etc.', null, 'https://discord.gg/5JXRY8z')
+        },
+        {
+            position: [49.4, 33.27],
+            tooltip: 'Beato Saba',
+            popup: getPopupMarkup('Beato Saba', 'RU, UA, BY, KZ, etc.', null, 'https://discord.gg/5JXRY8z')
+        },
+        {
+            position: [48.75, 69.17],
+            tooltip: 'Beato Saba',
+            popup: getPopupMarkup('Beato Saba', 'RU, UA, BY, KZ, etc.', null, 'https://discord.gg/5JXRY8z')
         },
         {
             position: [-23.5, 134.6],
@@ -185,58 +195,88 @@ var map = L.map('saber-map', {
         },
         {
             position: [52, 10.5],
-            tooltip: 'DE Community',
-            popup: getPopupMarkup('DE Community', 'Germany, Austria', null, 'https://discord.gg/SX7mKqk')
+            tooltip: 'BeatSaber Community DE',
+            popup: getPopupMarkup('BeatSaber Community DE', null, null, 'https://discord.gg/y4G6ruN')
         },
         {
             position: [44.4, 5],
-            tooltip: 'Communauté Francophone BS',
-            popup: getPopupMarkup('Communauté Francophone BS', 'France, Belgium, Switzerland, Québec, etc.', 'ExUnReal#0020')
+            tooltip: 'Beat Saber FR',
+            popup: getPopupMarkup('Beat Saber FR', null, null, 'https://discord.gg/8cAAa7J')
         },
         {
-            position: [51.4, 5.5],
-            tooltip: 'Dutch Discord',
-            popup: getPopupMarkup('Dutch Discord', 'Netherlands', 'miitchel#0001, SilverHaze#0001,<br>CoolingCloset#0001', null, 'Events & Tournaments')
+            position: [46.6, 9.71],
+            tooltip: 'SwissSaber',
+            popup: getPopupMarkup('SwissSaber', null, null, 'https://discord.gg/eV6SUUF')
         },
         {
-            position: [55.6, 8.9],
-            tooltip: 'Danish Discord',
-            popup: getPopupMarkup('Danish Discord', 'Denmark', 'Prans👑#0020')
+            position: [60.45, 14.88],
+            tooltip: 'Beat Saber Sweden',
+            popup: getPopupMarkup('Beat Saber Sweden', null, null, 'https://discord.gg/9HavEGBzZz')
         },
         {
-            position: [61.3, 19.3],
-            tooltip: 'Nordic Discord',
-            popup: getPopupMarkup('Nordic Discord', 'Sweden, Norway,<br>Denmark, Finland, Iceland', 'Samuel 💜#0001')
+            position: [47.49, 13.43],
+            tooltip: 'Beatsaber Community Austria',
+            popup: getPopupMarkup('Beatsaber Community Austria', null, null, 'https://discord.gg/TvRkNY2')
+        },
+        {
+            position: [30.91, 34.88],
+            tooltip: 'Beat Saber Israel',
+            popup: getPopupMarkup('Beat Saber Israel', null, null, 'https://discord.gg/HHH7sK8')
+        },
+        {
+            position: [53, 5.8],
+            tooltip: 'Nederlandse Beat Saber Groep',
+            popup: getPopupMarkup('Nederlandse Beat Saber Groep', null, null, 'https://discord.gg/sDa7xrE')
+        },
+        {
+            position: [61.21, 8.61],
+            tooltip: 'Beat Saber Norge',
+            popup: getPopupMarkup('Beat Saber Norge', null, null, 'https://discord.gg/nZuY3yM')
         },
         {
             position: [42.4, -5.2],
-            tooltip: 'Spanish Discord',
-            popup: getPopupMarkup('Spanish Discord', 'Spain', 'animaleco#0827')
+            tooltip: 'BeatSaber España',
+            popup: getPopupMarkup('BeatSaber España', null, null, 'https://discord.gg/x6mChxk')
+        },
+        {
+            position: [41.29, 15.03],
+            tooltip: 'Italian Beat Saber community',
+            popup: getPopupMarkup('Italian Beat Saber community', null, null, 'https://discord.gg/asdJZ7cTxe')
+        },
+        {
+            position: [64.13, 28.04],
+            tooltip: 'Tahti Sapeli',
+            popup: getPopupMarkup('Tahti Sapeli', null, null, 'https://discord.gg/qCtX7yBv7J')
         },
         {
             position: [37, 128.9],
             tooltip: 'KOR Community',
-            popup: getPopupMarkup('KOR Community', 'South Korea', null, 'https://discord.gg/3ZuEH7y')
+            popup: getPopupMarkup('KOR Community', 'South Korea', null, 'https://discord.gg/SEFBZrG')
         },
         {
-            position: [33.3, 126.5],
-            tooltip: 'KPOP BS',
-            popup: getPopupMarkup('KPOP BS', null, null, 'https://discord.gg/3ZuEH7y', 'K-Pop and Beat Saber fans 🥰')
+            position: [55.6, 8.9],
+            tooltip: 'Dane Saber',
+            popup: getPopupMarkup('Dane Saber', null, null, null, '<a href="https://forms.gle/AhgBFSK7RnRDDMHa9" target="_blank">Application Form</a>')
+        },
+        {
+            position: [50.9, 3.08],
+            tooltip: 'Belgian Beat Saber Community',
+            popup: getPopupMarkup('Belgian Beat Saber Community', null, null, null, '<a href="https://forms.gle/26VXi4HmnZnDoPZN7" target="_blank">Application Form</a>')
         },
         {
             position: [5.9, 102.2],
             tooltip: 'Asia VR Community',
-            popup: getPopupMarkup('Asia VR Community', 'Malaysia, Singapore, India,<br>Taiwan, Thailand, Philippines,<br>South Korea, Japan, China, etc.', null, 'https://discord.gg/255UW8b', 'General, has a Beat Saber channel')
+            popup: getPopupMarkup('Asia VR Community', 'Malaysia, Singapore, India,<br>Taiwan, Thailand, Philippines,<br>South Korea, Japan, China, etc.', null, null, '<a href="https://forms.gle/Ga3jWoCkugPBD6BZ6" target="_blank">Application Form</a>')
+        },
+        {
+            position: [37.16, 44.69],
+            tooltip: 'Beat Saber Middle East',
+            popup: getPopupMarkup('Beat Saber Middle East', 'Egypt, Iran, Turkey, Iraq,<br>Saudi Arabia, Yemen, UAE, Kuwait, etc.', null, null, '<a href="https://forms.gle/Vbh6eRpEqpZ8w4R77" target="_blank">Application Form</a>')
         },
         {
             position: [31.7, 99.2],
             tooltip: 'CN Community (QQ)',
             popup: getPopupMarkup('CN Community', null, null, null, '<strong>QQ group ID</strong>: 916499592')
-        },
-        {
-            position: [53.4, 35.86],
-            tooltip: 'VR RUS',
-            popup: getPopupMarkup('VR RUS', 'Russia, Ukraine, Belarus, etc.', null, 'https://discord.gg/pAvAwfR', 'General, has a Beat Saber channel')
         }
     ];
 
@@ -653,15 +693,15 @@ $(document).ready(function () {
     }).addTo(map);
 
     // Add a helper marker to help get coordinates
-    /* helperMarker.addTo(map)
+    helperMarker.addTo(map)
         .bindPopup(helperPopup).openPopup()
         // recalculate marker position on drag
         // + don't close it while dragging
         .on('drag', function () {
             var latlng = this.getLatLng();
-            helperPopup.setContent('[' + _.round(latlng.lat, 5) + ', ' + _.round(latlng.lng, 5) + ']');
+            helperPopup.setContent('[' + _.round(latlng.lat, 2) + ', ' + _.round(latlng.lng, 2) + ']');
             this.openPopup();
-        }); */
+        });
 
     discordMarkers.forEach(function (marker) {
         var layer = L.marker(marker.position, {icon: discordIcon});
@@ -717,11 +757,11 @@ $(document).ready(function () {
                     popupContent = '<div class="popup-photo"><img src="' +
                         avatar + '"></div><div class="popup-info">' +
                         '<div class="popup-item -name">' + name + '</div>' +
-                        '<div class="popup-item -profile"><img src="images/ScoreSaberLogo.svg">&nbsp;<a href="' + url + '" target="_blank">Profile</a></div>' +
+                        '<div class="popup-item -profile"><img src="images/ScoreSaberLogo.svg">&nbsp;<a href="' + url + '" target="_blank">ScoreSaber</a> | <img class="ssr" src="images/ssr.png">&nbsp;<a href="' + alt + '" target="_blank">Reloaded</a></div>' +
                         '<div class="popup-item -info"><span><strong>World Rank:</strong>&nbsp;' + rank + '</span></div>' +
                         '<div class="popup-item -info"><span><strong>Points:</strong>&nbsp;' + points + '</span></div>' +
                         '<div class="popup-item -country"><img src="images/blank.gif" class="flag flag-' +
-                        country + '">&nbsp;<a href="' + countryUrl + country + '" target="_blank">' + countries[country.toUpperCase()].name + '</a></div></div>';
+                        country + '">&nbsp;<a href="' + countryUrl + country + '" target="_blank">' + countries[country.toUpperCase()].name + '</a> | <img class="ssr" src="images/ssr.png">&nbsp;<a href="' + altCountry + country + '" target="_blank">SSR</a></div></div>';
 
                     // Bind the constructed tooltip and popup to the player
                     layer.bindTooltip(tooltipContent, {

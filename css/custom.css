@@ -405,7 +405,8 @@ fieldset[disabled] .btn {
     color: #999;
 }
 
-.popup-item.-profile img {
+.popup-item.-profile img,
+img.ssr {
     height: 15px;
 }
 
