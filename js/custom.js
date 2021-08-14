@@ -10,7 +10,7 @@ var map = L.map('saber-map', {
         center: [36, -36],
         zoom: 3,
         minZoom: 3,
-        maxZoom: 8,
+        maxZoom: 7,
         maxBounds: [[-57, -200], [80, 200]],
         zoomControl: false,
         wheelPxPerZoomLevel: 120,
@@ -169,7 +169,7 @@ var map = L.map('saber-map', {
             popup: getPopupMarkup('CzechSaber', null, null, 'https://discord.gg/r42NEPt3w5')
         },
         {
-            position: [54.07, 35.29],
+            position: [63.23, 88.24],
             tooltip: 'Beato Saba',
             popup: getPopupMarkup('Beato Saba', 'RU, UA, BY, KZ, etc.', null, 'https://discord.gg/5JXRY8z')
         },
@@ -683,8 +683,8 @@ $(document).ready(function () {
 
     $blocks.perfectScrollbar();
 
-    L.tileLayer('http://zverik.openstreetmap.ru/mbtiles/w/political-ua/{z}/{x}/{y}.png', {
-        opacity: 0.55,
+    L.tileLayer('https://n3tman.github.io/SaberMap/tiles/{z}/{x}/{y}.png', {
+        opacity: 0.6,
         attribution: 'Countries &copy; <a href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Natural Earth</a> | Tiles by <a href="http://ilya.zverev.info/">Zverik</a>'
     }).addTo(map);
 
